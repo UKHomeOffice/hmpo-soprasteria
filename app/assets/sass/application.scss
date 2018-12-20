@@ -14,3 +14,48 @@ $govuk-global-styles: true;
 @import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+#sub-nav {
+  margin-bottom: 20px;
+}
+
+#sub-nav {
+  background-color: #fff;
+  border-bottom: 1px solid #bfc1c3;
+  margin-top: 0;
+  padding-bottom: 0.75em;
+  padding: 0;
+  z-index: 999;
+}
+
+#sub-nav li {
+  position: relative;
+  display: inline;
+}
+
+#sub-nav a {
+  display: inline-block;
+  font-weight: bold;
+  margin: 0;
+  outline: 0;
+  padding: 15px 30px;
+  text-decoration: none;
+}
+
+#sub-nav li a.active {
+  font-weight: bold;
+  background-color: #004A83;
+  color: #fff;
+}
+
+a:visited {
+  color: #4c2c92;
+}
+
+a:link {
+  color: #005ea5;
+}
+
+.govuk-phase-banner {
+  margin-top: -30px;
+}

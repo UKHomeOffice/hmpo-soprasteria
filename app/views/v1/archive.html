@@ -1,0 +1,151 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  DPS & LSR Prototype
+{% endblock %}
+
+{% block content %}
+  {% include "includes/phase-banner.html" %}
+
+  <ul id="sub-nav">
+    <li><a href="index">Applications</a></li>
+    <li><a href="archive" class="active">Archive</a></li>
+  </ul>
+
+  <div class="govuk-grid-row">
+    {# <div class="govuk-grid-column-one-third">
+      {% from "select/macro.njk" import govukSelect %}
+
+      {{ govukSelect({
+        id: "sort-by-day",
+        name: "sort-by-day",
+        label: {
+          text: "Day"
+        },
+        items: [
+          {
+            value: "published",
+            text: "Recently published"
+          },
+          {
+            value: "updated",
+            text: "Recently updated",
+            selected: true
+          },
+          {
+            value: "views",
+            text: "Most views"
+          },
+          {
+            value: "comments",
+            text: "Most comments"
+          }
+        ]
+      }) }}
+    </div> #}
+
+    <div class="govuk-grid-column-one-quarter">
+      {% from "select/macro.njk" import govukSelect %}
+
+      {{ govukSelect({
+        id: "sort-by-month",
+        name: "sort-by-month",
+        label: {
+          text: "Month"
+        },
+        items: [
+          {
+            value: "January",
+            text: "January",
+            selected: true
+          },
+          {
+            value: "February",
+            text: "February"
+          },
+          {
+            value: "March",
+            text: "March"
+          },
+          {
+            value: "April",
+            text: "April"
+          }
+        ]
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-quarter">
+      {% from "select/macro.njk" import govukSelect %}
+
+      {{ govukSelect({
+        id: "sort-by-year",
+        name: "sort-by-year",
+        label: {
+          text: "Year"
+        },
+        items: [
+          {
+            value: "2019",
+            text: "2019",
+            selected: true
+          },
+          {
+            value: "2018",
+            text: "2018"
+          },
+          {
+            value: "2017",
+            text: "2017"
+          },
+          {
+            value: "2016",
+            text: "2016"
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+{% from "table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  head: [
+    {
+      text: "PEX"
+    },
+    {
+      text: "Name"
+    },
+    {
+      text: "Collection date"
+    },
+    {
+      text: "Collection time"
+    },
+    {
+      text: "Collection office"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "PEX123456"
+      },
+      {
+        text: "John Dale"
+      },
+      {
+        text: "01/01/2019"
+      },
+      {
+        text: "10:00 AM"
+      },
+      {
+        text: "London"
+      }
+    ]
+  ]
+}) }}
+
+{% endblock %}

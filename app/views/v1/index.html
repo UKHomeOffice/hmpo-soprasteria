@@ -6,24 +6,308 @@
 {% endblock %}
 
 {% block content %}
+  {% include "includes/phase-banner.html" %}
+
+  <ul id="sub-nav">
+    <li><a href="index" class="active">Applications</a></li>
+    <li><a href="archive">Archive</a></li>
+  </ul>
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        DPS & LSR Prototype
-      </h1>
+    <div class="govuk-grid-column-one-half">
+      {% from "input/macro.njk" import govukInput %}
 
-      <h2 class="govuk-heading-m">About</h2>
-
-      <p>This prototype has been designed for the Sepora Steria LSR and DPS processing teams.
-      Aims to improve their workflow.</p>
-
-      <h2 class="govuk-heading-m">Versions</h2>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li><a href="/v1/index">V1</a></li>
-      </ul>
+      {{ govukInput({
+        id: "search",
+        name: "search"
+      }) }}
     </div>
-</div>
+
+    <div class="govuk-grid-column-one-third">
+      {% from "button/macro.njk" import govukButton %}
+
+      {{ govukButton({
+        text: "Search"
+      }) }}
+    </div>
+  </div>
+
+  {% from "tabs/macro.njk" import govukTabs %}
+  {% from "table/macro.njk" import govukTable %}
+
+  {% set newAppsHtml %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">New applications</h2>
+    </div>
+    <div class="govuk-grid-column-one-third govuk-table__cell--numeric">
+      <a href="print">Print all</a>
+    </div>
+  </div>
+  {{ govukTable({
+    head: [
+      {
+        text: "PEX"
+      },
+      {
+        text: "Name"
+      },
+      {
+        text: "Collection date"
+      },
+      {
+        text: "Collection time"
+      },
+      {
+        text: "Collection office"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "John Dale"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ],
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "Paul Farmer"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ],
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "Rita Patel"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ]
+    ]
+  }) }}
+  {% endset -%}
+
+  {% set inProgressHtml %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">In progress</h2>
+    </div>
+    <div class="govuk-grid-column-one-third govuk-table__cell--numeric">
+      <a href="print">Move all to ready for team leader</a>
+    </div>
+  </div>
+  {{ govukTable({
+    head: [
+      {
+        text: "PEX"
+      },
+      {
+        text: "Name"
+      },
+      {
+        text: "Collection date"
+      },
+      {
+        text: "Collection time"
+      },
+      {
+        text: "Collection office"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "John Dale"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ],
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "Paul Farmer"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ],
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "Rita Patel"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ]
+    ]
+  }) }}
+  {% endset -%}
+
+  {% set readyForTeamLeaderHtml %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-heading-l">Ready for team leader</h2>
+    </div>
+    <div class="govuk-grid-column-one-third govuk-table__cell--numeric">
+      <a href="print">Archive all</a>
+    </div>
+  </div>
+  {{ govukTable({
+    head: [
+      {
+        text: "PEX"
+      },
+      {
+        text: "Name"
+      },
+      {
+        text: "Collection date"
+      },
+      {
+        text: "Collection time"
+      },
+      {
+        text: "Collection office"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "John Dale"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ],
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "Paul Farmer"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ],
+      [
+        {
+          text: "PEX123456"
+        },
+        {
+          text: "Rita Patel"
+        },
+        {
+          text: "01/01/2019"
+        },
+        {
+          text: "10:00 AM"
+        },
+        {
+          text: "London"
+        }
+      ]
+    ]
+  }) }}
+  {% endset -%}
+
+  {{ govukTabs({
+    items: [
+      {
+        label: "New",
+        id: "new-apps",
+        panel: {
+          html: newAppsHtml
+        }
+      },
+      {
+        label: "In progress",
+        id: "in-progress",
+        panel: {
+          html: inProgressHtml
+        }
+      },
+      {
+        label: "Read for team leader",
+        id: "ready-for-team-leader",
+        panel: {
+          html: readyForTeamLeaderHtml
+        }
+      }
+    ]
+  }) }}
 
 {% endblock %}
