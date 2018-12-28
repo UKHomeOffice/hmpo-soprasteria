@@ -63,7 +63,14 @@ a:link {
 $highlight-colour: #FFECC7;
 $selected-colour: #FFECC7;
 
-.table-clickable tbody tr:hover {
-  background-color: $highlight-colour;
-  cursor: pointer;
+.table-clickable {
+
+  tbody tr:hover {
+    background-color: $highlight-colour;
+    cursor: pointer;
+  }
+
+  .govuk-checkboxes__label {
+    padding: 0;
+  }
 }

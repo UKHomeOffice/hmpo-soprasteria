@@ -1,0 +1,101 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  DPS & LSR Prototype
+{% endblock %}
+
+{% block content %}
+  {% include "includes/phase-banner.html" %}
+
+  <ul id="sub-nav">
+    <li><a href="index">Applications</a></li>
+    <li><a href="archive">Archive</a></li>
+    {% if user %} <li><a href="reports" class="active">Reports</a></li> {% endif %}
+  </ul>
+  
+  <h2 class="govuk-heading-l">Reports</h2>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      {% from "select/macro.njk" import govukSelect %}
+
+      {{ govukSelect({
+        id: "office",
+        name: "office",
+        label: {
+          text: "Processing office"
+        },
+        items: [
+          {
+            value: "Glasgow",
+            text: "Glasgow"
+          },
+          {
+            value: "Peterborough",
+            text: "Peterborough",
+            selected: true
+          },
+          {
+            value: "London",
+            text: "London"
+          }
+        ]
+      }) }}
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% from "select/macro.njk" import govukSelect %}
+
+      {{ govukSelect({
+        id: "month",
+        name: "month",
+        label: {
+          text: "Sort by month"
+        },
+        items: [
+          {
+            value: "January",
+            text: "January",
+            selected: true
+          },
+          {
+            value: "February",
+            text: "February"
+          },
+          {
+            value: "March",
+            text: "March"
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p>Displaying reports for <b>Peterborough</b> in <b>January</b></p>
+    </div>
+  </div>
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header">Date</th>
+        <th class="govuk-table__header">Name</th>
+        <th class="govuk-table__header">Actions</th>
+        <th class="govuk-table__header"></th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% for report in reports %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">{{ report.date }}</td>
+          <td class="govuk-table__cell">{{ report.name }}</td>
+          <td class="govuk-table__cell"><a href="">Download</a></td>
+          <td class="govuk-table__cell"><a href="">Print</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
