@@ -16,21 +16,27 @@ DPS & LSR Prototype
 <h2 class="govuk-heading-l">Archive</h2>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    {{ govukDateInput({
-        id: "date",
-        namePrefix: "date",
-        value: '01/01/2019'
-      }) }}
-    {{ govukButton({
-        text: "Search"
-      }) }}
+  <div class="govuk-grid-column-one-quarter">
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="name">
+        PEX
+      </label>
+      <input class="govuk-input" id="name" name="name" type="text">
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-quarter">
+    <label class="govuk-label" for="name" style="visibility: hidden;">
+      PEX
+    </label>
+    <button type="submit" class="govuk-button">
+      Search
+    </button>
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <p>Displaying archive for <b>01/01/2019</b></p>
+    <p>Search results for <b>PEX2310110</b></p>
   </div>
 </div>
 
@@ -42,18 +48,20 @@ DPS & LSR Prototype
       <th class="govuk-table__header">Collection date</th>
       <th class="govuk-table__header">Collection time</th>
       <th class="govuk-table__header">Collection office</th>
+      <th class="govuk-table__header">Printed by</th>
+      <th class="govuk-table__header">Status</th>
     </tr>
   </thead>
   <tbody class="govuk-table__body">
-    {% for applications in newApplications %}
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell">{{ applications.id }}</td>
-      <td class="govuk-table__cell">{{ applications.name }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionDate }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionTime }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionOffice }}</td>
+      <td class="govuk-table__cell">PEX2310110</td>
+      <td class="govuk-table__cell">Lacey Cervantes</td>
+      <td class="govuk-table__cell">29/12/2018</td>
+      <td class="govuk-table__cell">09:51</td>
+      <td class="govuk-table__cell">Peterborough</td>
+      <td class="govuk-table__cell">Jhon Doe</td>
+      <td class="govuk-table__cell">Archived</td>
     </tr>
-    {% endfor %}
   </tbody>
 </table>
 

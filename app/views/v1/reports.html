@@ -16,63 +16,21 @@ DPS & LSR Prototype
 <h2 class="govuk-heading-l">Reports</h2>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
-    {% from "select/macro.njk" import govukSelect %}
+  <div class="govuk-grid-column-two-thirds">
+    {% from "date-input/macro.njk" import govukDateInput %}
 
-    {{ govukSelect({
-        id: "office",
-        name: "office",
-        label: {
-          text: "Processing office"
-        },
-        items: [
-          {
-            value: "Glasgow",
-            text: "Glasgow"
-          },
-          {
-            value: "Peterborough",
-            text: "Peterborough",
-            selected: true
-          },
-          {
-            value: "London",
-            text: "London"
-          }
-        ]
-      }) }}
+    {{ govukDateInput({
+      id: "date",
+      namePrefix: "date"
+    }) }}
   </div>
   <div class="govuk-grid-column-one-third">
-    {% from "select/macro.njk" import govukSelect %}
-
-    {{ govukSelect({
-        id: "month",
-        name: "month",
-        label: {
-          text: "Sort by month"
-        },
-        items: [
-          {
-            value: "January",
-            text: "January",
-            selected: true
-          },
-          {
-            value: "February",
-            text: "February"
-          },
-          {
-            value: "March",
-            text: "March"
-          }
-        ]
-      }) }}
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <p>Displaying reports for <b>Peterborough</b> in <b>January</b></p>
+    <p>Displaying reports for <b>26/01/2019</b></p>
   </div>
 </div>
 
@@ -88,7 +46,7 @@ DPS & LSR Prototype
   <tbody class="govuk-table__body">
     {% for report in reports %}
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell">{{ report.date }}</td>
+      <td class="govuk-table__cell">26/01/2019</td>
       <td class="govuk-table__cell">{{ report.name }}</td>
       <td class="govuk-table__cell"><a href="">Download</a></td>
       <td class="govuk-table__cell"><a href="">Print</a></td>
