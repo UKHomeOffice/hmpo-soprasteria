@@ -8,7 +8,7 @@ DPS & LSR Prototype
 {% include "includes/phase-banner.html" %}
 
 <ul id="sub-nav">
-  <li><a href="index">Applications</a></li>
+  <li><a href="applications">Applications</a></li>
   <li><a href="archive">Archive</a></li>
   {% if user %} <li><a href="reports" class="active">Reports</a></li> {% endif %}
 </ul>
@@ -16,7 +16,7 @@ DPS & LSR Prototype
 <h2 class="govuk-heading-l">Reports</h2>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-one-third">
     {% from "date-input/macro.njk" import govukDateInput %}
 
     {{ govukDateInput({
@@ -24,7 +24,13 @@ DPS & LSR Prototype
       namePrefix: "date"
     }) }}
   </div>
-  <div class="govuk-grid-column-one-third">
+  <div class="govuk-grid-column-one-quarter">
+    <label class="govuk-label" for="name" style="visibility: hidden;">
+      PEX
+    </label>
+    <button type="submit" class="govuk-button">
+      Search
+    </button>
   </div>
 </div>
 
@@ -54,5 +60,6 @@ DPS & LSR Prototype
     {% endfor %}
   </tbody>
 </table>
+<p>Showing 1 to 8, of 8</p>
 
 {% endblock %}

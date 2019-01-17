@@ -7,21 +7,22 @@ DPS & LSR Prototype
 {% block content %}
 {% include "includes/phase-banner.html" %}
 
-<ul id="sub-nav">
-  <li><a href="index" class="active">Applications</a></li>
-  <li><a href="archive">Archive</a></li>
-  {% if user %} <li><a href="reports">Reports</a></li> {% endif %}
-</ul>
-<form action="" method="post">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% from "select/macro.njk" import govukSelect %}
-
-      {{ govukSelect({
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <fieldset class="govuk-fieldset" style="margin-top: 2em">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+        <h1 class="govuk-fieldset__heading">
+          Welcome {{user}}
+        </h1>
+      </legend>
+      <form action="index" method="post">
+        {% from "select/macro.njk" import govukSelect %}
+        <!-- <h2 class="govuk-heading-l">Select your location</h2> -->
+        {{ govukSelect({
           id: "office",
           name: "office",
           label: {
-            text: "Processing office"
+            text: "Select your current location"
           },
           items: [
             {
@@ -39,189 +40,12 @@ DPS & LSR Prototype
             }
           ]
         }) }}
-    </div>
-  </div>
-</form>
-
-{% set newAppsHtml %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l">New applications</h2>
-  </div>
-  <div class="govuk-grid-column-one-third govuk-table__cell--numeric">
-    <a href="index#in-progress" class="govuk-button">Print</a>
+        <button type="submit" class="govuk-button">
+          Continue
+        </button>
+      </form>
+    </fieldset>
   </div>
 </div>
-
-<table class="table-clickable govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header multiple-choice--hod">
-        <div class="govuk-checkboxes__item">
-          <input type="checkbox" class="govuk-checkboxes__input jsCheckboxAll" id="radio-all">
-          <label class="govuk-label govuk-checkboxes__label" for="radio-all">
-            &nbsp;
-          </label>
-        </div>
-      </th>
-      <th class="govuk-table__header">PEX</th>
-      <th class="govuk-table__header">Name</th>
-      <th class="govuk-table__header">Collection date</th>
-      <th class="govuk-table__header">Collection time</th>
-      <th class="govuk-table__header">Collection office</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {% for applications in newApplications | sort(false, true, 'collectionDate') %}
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell multiple-choice--hod">
-        <div class="govuk-checkboxes__item">
-          <input type="checkbox" class="govuk-checkboxes__input jsCheckbox" id="radio-1">
-          <label class="govuk-label govuk-checkboxes__label" for="radio-1">
-            &nbsp;
-          </label>
-        </div>
-      </td>
-      <td class="govuk-table__cell">{{ applications.id }}</td>
-      <td class="govuk-table__cell">{{ applications.name }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionDate }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionTime }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionOffice }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-<p>Showing 1 to 10, of 100</p>
-{% endset -%}
-
-{% set inProgressHtml %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l">In progress</h2>
-  </div>
-  <div class="govuk-grid-column-one-third govuk-table__cell--numeric">
-    <a href="index#ready-for-team-leader" class="govuk-button">Ready for team leader</a>
-  </div>
-</div>
-
-<table class="table-clickable govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header multiple-choice--hod">
-        <div class="govuk-checkboxes__item">
-          <!-- <input type="checkbox" class="govuk-checkboxes__input jsCheckboxAll" id="radio-all"> -->
-          <label class="govuk-label govuk-checkboxes__label" for="radio-all">
-            &nbsp;
-          </label>
-        </div>
-      </th>
-      <th class="govuk-table__header">PEX</th>
-      <th class="govuk-table__header">Name</th>
-      <th class="govuk-table__header">Collection date</th>
-      <th class="govuk-table__header">Collection time</th>
-      <th class="govuk-table__header">Collection office</th>
-      <th class="govuk-table__header">Printed by</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {% for applications in newApplications | sort(false, true, 'collectionDate') %}
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell multiple-choice--hod">
-        <div class="govuk-checkboxes__item">
-          <input type="checkbox" class="govuk-checkboxes__input jsCheckbox" id="radio-1">
-          <label class="govuk-label govuk-checkboxes__label" for="radio-1">
-            &nbsp;
-          </label>
-        </div>
-      </td>
-      <td class="govuk-table__cell">{{ applications.id }}</td>
-      <td class="govuk-table__cell">{{ applications.name }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionDate }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionTime }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionOffice }}</td>
-      <td class="govuk-table__cell">Jhon Doe</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% endset -%}
-
-{% set readyForTeamLeaderHtml %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-l">Ready for team leader</h2>
-  </div>
-  <div class="govuk-grid-column-one-third govuk-table__cell--numeric">
-    {% if user === 'teamleader' %}
-    <a href="/" class="govuk-button">Archive</a>
-    {% endif %}
-  </div>
-</div>
-
-<table class="table-clickable govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th class="govuk-table__header multiple-choice--hod">
-        <div class="govuk-checkboxes__item">
-          <input type="checkbox" class="govuk-checkboxes__input jsCheckboxAll" id="radio-all">
-          <label class="govuk-label govuk-checkboxes__label" for="radio-all">
-            &nbsp;
-          </label>
-        </div>
-      </th>
-      <th class="govuk-table__header">PEX</th>
-      <th class="govuk-table__header">Name</th>
-      <th class="govuk-table__header">Collection date</th>
-      <th class="govuk-table__header">Collection time</th>
-      <th class="govuk-table__header">Collection office</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {% for applications in newApplications | sort(false, true, 'collectionDate') %}
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell multiple-choice--hod">
-        <div class="govuk-checkboxes__item">
-          <input type="checkbox" class="govuk-checkboxes__input jsCheckbox" id="radio-1">
-          <label class="govuk-label govuk-checkboxes__label" for="radio-1">
-            &nbsp;
-          </label>
-        </div>
-      </td>
-      <td class="govuk-table__cell">{{ applications.id }}</td>
-      <td class="govuk-table__cell">{{ applications.name }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionDate }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionTime }}</td>
-      <td class="govuk-table__cell">{{ applications.collectionOffice }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% endset -%}
-
-{{ govukTabs({
-    items: [
-      {
-        label: "New",
-        id: "new-apps",
-        panel: {
-          html: newAppsHtml
-        }
-      },
-      {
-        label: "In progress",
-        id: "in-progress",
-        panel: {
-          html: inProgressHtml
-        }
-      },
-      {
-        label: "Ready for team leader",
-        id: "ready-for-team-leader",
-        panel: {
-          html: readyForTeamLeaderHtml
-        }
-      }
-    ]
-  }) }}
 
 {% endblock %}
