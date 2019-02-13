@@ -70,7 +70,47 @@ $selected-colour: #FFECC7;
     cursor: pointer;
   }
 
-  .govuk-checkboxes__label {
+  .govuk-checkboxes__badge {
     padding: 0;
+  }
+}
+
+
+@mixin badge ($badge-background: #DEE0E2, $badge-border: #CBCBCB, $badge-text: #0B0C0C) {
+  background: $badge-background;
+  color: #FFF;
+  display: inline-block;
+  line-height: 1;
+  padding: 4px 5px 3px 5px;
+  margin: 0 calc(2 * #{5px}) 5px 5px;
+  text-align: left;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.badge {
+  @include badge(#6F777B, #0B0C0C);
+}
+.badge--white {
+  @include badge(#FFF);
+  color: #0B0C0C;
+  border: 1px solid #CBCBCB;
+}
+.badge--blue {
+  @include badge(#005EA5, #005EA5);
+}
+
+.badge--red {
+  @include badge(#B10E1E, #B10E1E)
+}
+
+.govuk-tabs__tab--selected .badge {
+  @extend .badge--white 
+}
+
+@media (max-width: 641px) {
+  .badge, .badge--white, .badge--blue, .badge--red {
+    font-size: .85rem;
   }
 }
